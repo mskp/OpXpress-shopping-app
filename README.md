@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# OpXpress - Your Ultimate Destination for Quick and Easy Shopping
 
-## Getting Started
+<p align="center">
+  <a href="https://opxpress.sushant.fun">
+    <picture>
+      <img src="./public/icon.png" height="128">
+    </picture>
+    <h1 align="center">OpXpress</h1>
+  </a>
+</p>
 
-First, run the development server:
+## Links:
+
+- **Deployment URL:** https://opxpress.sushant.fun
+
+## About the App:
+
+Discover a world of convenience with OpXpress! Shop for the latest trends, hottest deals, and must-have items all in one place. With our user-friendly interface and lightning-fast service, shopping has never been easier. Join the OpXpress community today and experience hassle-free shopping like never before!
+
+## Technologies Used:
+
+- **TypeScript:** A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
+
+- **Next.js:** A React.js framework for building fast, modern websites and web applications.
+
+- **Redux Toolkit:** A library for managing application state, making it easier to write efficient and scalable code.
+
+- **Tailwind CSS:** A utility-first CSS framework for quickly building custom user interfaces.
+
+- **Shadcn:** A UI library to build responsive user interfaces.
+
+- **Firebase:** A platform for building web and mobile applications, providing backend services such as authentication, database, and hosting.
+
+## Features:
+
+- **Authentication:**
+  Secure and seamless user authentication using Firebase, ensuring user data privacy and security.
+
+- **Cart Management:**
+  Efficient cart management system allowing users to add, remove, and update products in their cart effortlessly.
+
+- **Products Showcase:**
+  Attractive and organized display of a wide range of products with detailed descriptions and images.
+
+- **Category-wise Filtering:**
+  Advanced filtering options to help users easily find products based on categories, enhancing the shopping experience.
+
+- **Order Storage in Database:**
+  Robust order management system that stores individual user orders in the Firebase database for easy retrieval and tracking.
+
+- **Responsive UI:**
+  A highly responsive user interface built with Shadcn, Tailwind CSS, and other modern UI frameworks, ensuring a smooth shopping experience across all devices.
+
+## How to Run:
+
+### **Clone the repository:**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+git clone https://github.com/mskp/OpXpress-shopping-app
+cd OpXpress-shopping-app
+```
+
+### **Install the dependencies:**
+
+> Make sure you have `bun` installed.
+
+```bash
+bun i
+```
+
+### **Run the development server:**
+
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Build for production:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+> Important Note: There is an .env.example file in the repository with sample variables required to run this project. These include Firebase credentials. Create a .env file in the root of the project and set these variables with proper values.
 
-## Learn More
+### Deployment
 
-To learn more about Next.js, take a look at the following resources:
+#### Deployment Steps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Fork the Repository:** https://github.com/mskp/OpXpress-shopping-app
+2. Create a Vercel account if you haven't already.
+3. Once logged in, click on "New Project" in the Vercel dashboard.
+4. Select "Import Git Repository" and connect your GitHub account if prompted.
+5. Choose the forked repository (OpXpress-shopping-app) from your GitHub account.
+6. Configure the project settings as needed.
+7. Add environment variables (Firebase credentials) in the Vercel dashboard.
+8. Click on "Deploy" and wait for the deployment process to complete.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Access the Deployed Application:
 
-## Deploy on Vercel
+- Once deployed, the application will be accessible via the provided deployment URL.
+- Users can visit the URL to access the OpXpress application.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Developer Info:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Sushant Pandey**
+
+  - GitHub: [https://github.com/mskp](https://github.com/mskp)
+  - Email: sushhantpandey@gmail.com
+  - LinkedIn: [https://linkedin.com/in/mskp](https://linkedin.com/in/mskp)
+  - All Links: [https://linktr.ee/isushant](https://linktr.ee/isushant)
