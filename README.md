@@ -55,6 +55,64 @@ Discover a world of convenience with OpXpress! Shop for the latest trends, hotte
 - **Responsive UI:**
   A highly responsive user interface built with Shadcn, Tailwind CSS, and other modern UI frameworks, ensuring a smooth shopping experience across all devices.
 
+## Screenshots:
+
+### Home Page
+
+<div align="center">
+  <img src="./public/screenshots/home1.png" height="128">
+</div>
+
+<div align="center">
+  <img src="./public/screenshots/home2.png" height="128">
+</div>
+
+<div align="center">
+  <img src="./public/screenshots/home3.png" height="128">
+</div>
+
+### Product Page
+
+<div align="center">
+  <img src="./public/screenshots/product.png" height="128">
+</div>
+
+### Cart Page
+
+<div align="center">
+  <img src="./public/screenshots/cart.png" height="128">
+</div>
+
+### Checkout
+
+<div align="center">
+  <img src="./public/screenshots/checkout.png" height="128">
+</div>
+
+### Orders Page
+
+<div align="center">
+  <img src="./public/screenshots/orders.png" height="128">
+</div>
+
+### Search Results Page
+
+<div align="center">
+  <img src="./public/screenshots/search.png" height="128">
+</div>
+
+### Login
+
+<div align="center">
+  <img src="./public/screenshots/login.png" height="128">
+</div>
+
+### Signup
+
+<div align="center">
+  <img src="./public/screenshots/signup.png" height="128">
+</div>
+
 ## How to Run:
 
 ### **Clone the repository:**
