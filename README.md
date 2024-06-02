@@ -31,6 +31,10 @@ Discover a world of convenience with OpXpress! Shop for the latest trends, hotte
 
 - **Firebase:** A platform for building web and mobile applications, providing backend services such as authentication, database, and hosting.
 
+- **Prisma ORM:** An open-source database toolkit that simplifies database access with an auto-generated and type-safe query builder, enabling seamless integration with TypeScript.
+
+- **MongoDB:** A NoSQL database that provides flexible and scalable storage for various types of data, ensuring efficient data management for the application.
+
 ## Features:
 
 - **Authentication:**

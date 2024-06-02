@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation";
 
 export default function Menu() {
   const {
-    auth: { isLoggedin },
+    auth: { isLoggedin, auth },
     logout,
   } = useAuth();
   const { setAuthDialog } = useAuthDialog();
@@ -41,7 +41,7 @@ export default function Menu() {
           <DropdownMenuGroup>
             <DropdownMenuItem
               className="cursor-pointer"
-              onClick={() => router.push("/orders")}
+              onClick={() => router.push(`/orders/${auth?.uid}`)}
             >
               {/* <Link href={"/orders"} className="flex items-center"> */}
               <BaggageClaim className="mr-2 h-4 w-4" />

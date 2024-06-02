@@ -1,6 +1,6 @@
 export const APP_NAME = "OpXpress";
 
-export const API_BASE_URL = "https://fakestoreapi.com";
+export const MAX_CART_ITEM_QUANTITY = 5;
 
 export const FOOTER_LINKS = [
   {
@@ -15,7 +15,7 @@ export const FOOTER_LINKS = [
     ],
   },
   {
-    title: "Customer Service",
+    title: "Customer",
     items: [
       { name: "Help Center", href: "#" },
       { name: "Track Order", href: "#" },
@@ -23,17 +23,6 @@ export const FOOTER_LINKS = [
       { name: "Returns", href: "#" },
       { name: "Refund Policy", href: "#" },
       { name: "Contact Us", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    items: [
-      { name: "About Us", href: "#" },
-      { name: "Careers", href: "#" },
-      { name: "Press", href: "#" },
-      { name: "Affiliates", href: "#" },
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms & Conditions", href: "#" },
     ],
   },
 ];
