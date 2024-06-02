@@ -45,7 +45,7 @@ export default function CheckoutDialog() {
     const ordered = await checkout(auth?.auth?.uid!, checkoutDetails);
     if (ordered) {
       setCheckoutDialog(false);
-      router.push(`/order/${auth?.auth?.uid}`);
+      router.push(`/orders/${auth?.auth?.uid}`);
     }
   });
 
