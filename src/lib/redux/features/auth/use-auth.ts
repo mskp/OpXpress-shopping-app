@@ -13,13 +13,16 @@ import {
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearAuth, selectAuth, setAuth } from "./auth-slice";
-// import { useRouter } from "next/navigation";
 import { useAuthDialog } from "../auth-dialog/use-auth-dialog";
 
 type LoginCredentials =
   | { loginMethod: "google" }
   | { loginMethod: "emailAndPassword"; email: string; password: string };
 
+/**
+ * Custom hook to handle authentication.
+ * @returns Object containing authentication state and functions to login, signup, and logout.
+ */
 export const useAuth = () => {
   const googleAuthProvider = new GoogleAuthProvider();
   const dispatch = useDispatch();
@@ -36,6 +39,10 @@ export const useAuth = () => {
     return unsubscribe;
   }, [auth.isLoggedin, dispatch]);
 
+  /**
+   * Function to log in a user.
+   * @param data - The login credentials, either email/password or Google login.
+   */
   const login = async (data: LoginCredentials) => {
     try {
       let user: User;
@@ -70,6 +77,12 @@ export const useAuth = () => {
     }
   };
 
+  /**
+   * Function to sign up a new user.
+   * @param email - The user's email address.
+   * @param password - The user's password.
+   * @param signupMethod - The signup method, either email/password or Google login. Default is email/password.
+   */
   const signup = async (
     email: string,
     password: string,
@@ -103,6 +116,9 @@ export const useAuth = () => {
     }
   };
 
+  /**
+   * Function to log out the current user.
+   */
   const logout = async () => {
     try {
       await signOut(authInstance);

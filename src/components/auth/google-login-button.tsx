@@ -1,6 +1,6 @@
+import { useAuth } from "@/lib/redux/features/auth/use-auth";
 import { FcGoogle } from "react-icons/fc";
 import { Button } from "../ui/button";
-import { useAuth } from "@/lib/redux/features/auth/use-auth";
 import { toast } from "../ui/use-toast";
 
 function GoogleLoginButton() {

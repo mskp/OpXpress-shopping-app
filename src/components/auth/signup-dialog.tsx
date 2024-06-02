@@ -9,13 +9,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuthDialog } from "@/lib/redux/features/auth-dialog/use-auth-dialog";
+import { useAuth } from "@/lib/redux/features/auth/use-auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import BrandIcon from "../misc/brand-icon";
 import { Card, CardContent } from "../ui/card";
 import GoogleLoginButton from "./google-login-button";
-import { useAuth } from "@/lib/redux/features/auth/use-auth";
 
 const signupSchema = z
   .object({
