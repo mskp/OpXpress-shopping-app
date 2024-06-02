@@ -1,5 +1,5 @@
 import { APP_NAME, FOOTER_LINKS } from "@/config/consts";
-import BrandIcon from "../brand-icon";
+import BrandIcon from "../misc/brand-icon";
 import FooterLinks from "./footer-links";
 import SocialLinks from "./social-links";
 
@@ -12,7 +12,7 @@ function Footer() {
           <h2 className="text-xl mb-6 font-bold logo">
             <BrandIcon />
           </h2>
-          <div className="grid grid-cols-3 justify-between gap-4">
+          <div className="grid grid-cols-2 justify-between gap-2">
             {FOOTER_LINKS.map((links, idx) => (
               <FooterLinks key={idx} {...links} />
             ))}

@@ -1,4 +1,7 @@
-function Loading() {
-  return <h1 className="text-4xl">Loading...</h1>;
+import ProductsSkeleton from "@/components/skeleton/products-skeleton";
+
+function LoadingHomePage() {
+  return <ProductsSkeleton />;
 }
-export default Loading;
+
+export default LoadingHomePage;

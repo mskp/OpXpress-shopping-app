@@ -12,9 +12,10 @@ import { useAuthDialog } from "@/lib/redux/features/auth-dialog/use-auth-dialog"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import BrandIcon from "../brand-icon";
+import BrandIcon from "../misc/brand-icon";
 import { Card, CardContent } from "../ui/card";
 import GoogleLoginButton from "./google-login-button";
+import { useAuth } from "@/lib/redux/features/auth/use-auth";
 
 const signupSchema = z
   .object({
@@ -36,17 +37,20 @@ type SignupSchema = z.infer<typeof signupSchema>;
 
 export default function SignupDialog() {
   const { setAuthDialog } = useAuthDialog();
+  const { signup } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<SignupSchema>({
     resolver: zodResolver(signupSchema),
   });
 
-  const onSubmit = (data: SignupSchema) => {
-    console.log(data);
+  const onSubmit = async ({
+    email,
+    password,
+  }: Omit<SignupSchema, "confirmPassword">) => {
+    await signup(email, password, "emailAndPassword");
   };
 
   return (

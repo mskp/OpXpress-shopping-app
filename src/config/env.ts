@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const environmentSchema = z.object({
+  DATABASE_URL: z.string(),
   NEXT_PUBLIC_FIREBASE_API_KEY: z.string(),
   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: z.string(),
   NEXT_PUBLIC_FIREBASE_PROJECT_ID: z.string(),
@@ -11,6 +12,7 @@ const environmentSchema = z.object({
 });
 
 const {
+  DATABASE_URL,
   NEXT_PUBLIC_FIREBASE_API_KEY,
   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -21,6 +23,7 @@ const {
 } = process.env;
 
 const parsedResults = environmentSchema.safeParse({
+  DATABASE_URL,
   NEXT_PUBLIC_FIREBASE_API_KEY,
   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -31,7 +34,6 @@ const parsedResults = environmentSchema.safeParse({
 });
 
 if (!parsedResults.success) {
-  console.log(parsedResults.error);
   throw new Error("Environment doesn't match the schema");
 }
 

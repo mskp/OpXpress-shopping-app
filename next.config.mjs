@@ -4,14 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "fakestoreapi.com",
+        hostname: "assets.ajio.com",
         port: "",
         pathname: "/**",
       },
     ],
-  },
-  experimental: {
-    scrollRestoration: true,
   },
 };
 

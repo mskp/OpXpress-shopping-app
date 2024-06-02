@@ -1,9 +1,7 @@
-// "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import BrandIcon from "../brand-icon";
+import BrandIcon from "../misc/brand-icon";
 import { Card, CardContent } from "../ui/card";
 import GoogleLoginButton from "./google-login-button";
 

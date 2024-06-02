@@ -6,6 +6,8 @@ import "@/config/env";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Providers from "./providers";
+import CheckoutDialog from "@/components/cart/checkout-dialog";
+import { Suspense } from "react";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "500" });
 
@@ -24,8 +26,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <Providers>
-          <Navbar />
+          <Suspense>
+            <Navbar />
+          </Suspense>
           <AuthDialog />
+          <CheckoutDialog />
           {children}
           <Footer />
         </Providers>

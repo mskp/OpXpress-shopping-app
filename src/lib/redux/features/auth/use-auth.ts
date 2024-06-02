@@ -24,7 +24,6 @@ export const useAuth = () => {
   const googleAuthProvider = new GoogleAuthProvider();
   const dispatch = useDispatch();
   const auth = useSelector(selectAuth);
-  // const router = useRouter();
   const { setAuthDialog } = useAuthDialog();
 
   useEffect(() => {
@@ -38,30 +37,37 @@ export const useAuth = () => {
   }, [auth.isLoggedin, dispatch]);
 
   const login = async (data: LoginCredentials) => {
-    let user: User;
+    try {
+      let user: User;
 
-    switch (data?.loginMethod) {
-      case "emailAndPassword": {
-        const { user: userCredentials } = await signInWithEmailAndPassword(
-          authInstance,
-          data.email,
-          data.password
-        );
-        user = userCredentials;
-        break;
+      switch (data?.loginMethod) {
+        case "emailAndPassword": {
+          const { user: userCredentials } = await signInWithEmailAndPassword(
+            authInstance,
+            data.email,
+            data.password
+          );
+          user = userCredentials;
+          break;
+        }
+        case "google": {
+          const { user: userCredentials } = await signInWithPopup(
+            authInstance,
+            googleAuthProvider
+          );
+          user = userCredentials;
+          break;
+        }
       }
-      case "google": {
-        const { user: userCredentials } = await signInWithPopup(
-          authInstance,
-          googleAuthProvider
-        );
-        user = userCredentials;
-        break;
-      }
+
+      dispatch(setAuth({ isLoggedin: true, auth: user }));
+      setAuthDialog(false, null);
+    } catch (error) {
+      toast({
+        title: "Could not login",
+        description: "Something went wrong",
+      });
     }
-
-    dispatch(setAuth({ isLoggedin: true, auth: user }));
-    setAuthDialog(false, null);
   };
 
   const signup = async (
@@ -69,27 +75,32 @@ export const useAuth = () => {
     password: string,
     signupMethod: "emailAndPassword" | "google" = "emailAndPassword"
   ) => {
-    let user: User;
-    switch (signupMethod) {
-      case "emailAndPassword": {
-        const { user: userCredentials } = await createUserWithEmailAndPassword(
-          authInstance,
-          email,
-          password
-        );
-        user = userCredentials;
-        break;
+    try {
+      let user: User;
+      switch (signupMethod) {
+        case "emailAndPassword": {
+          const { user: userCredentials } =
+            await createUserWithEmailAndPassword(authInstance, email, password);
+          user = userCredentials;
+          break;
+        }
+        case "google": {
+          const { user: userCredentials } = await signInWithPopup(
+            authInstance,
+            googleAuthProvider
+          );
+          user = userCredentials;
+          break;
+        }
       }
-      case "google": {
-        const { user: userCredentials } = await signInWithPopup(
-          authInstance,
-          googleAuthProvider
-        );
-        user = userCredentials;
-        break;
-      }
+      dispatch(setAuth({ isLoggedin: true, auth: user }));
+      setAuthDialog(false, null);
+    } catch (error: any) {
+      toast({
+        title: "Account could not be created",
+        description: "Email already in use",
+      });
     }
-    dispatch(setAuth({ isLoggedin: true, auth: user }));
   };
 
   const logout = async () => {
@@ -99,7 +110,6 @@ export const useAuth = () => {
       toast({
         title: "Logged out successfully",
       });
-      // router.replace("/");
       if (typeof window !== undefined) window.location.reload();
     } catch (error) {}
   };
