@@ -71,7 +71,7 @@ function Navbar() {
         </div>
       </nav>
 
-      <div className="block md:hidden bg-black text-white bg-opacity-90 backdrop-blur-xl p-4 relative z-50">
+      <div className="block md:hidden bg-black text-white bg-opacity-90 backdrop-blur-xl p-4 sticky top-0 z-50">
         <div className="relative w-full max-w-md mx-auto z-50">
           <Input
             className="border-none focus:ring-0 rounded-full text-black w-full relative z-50"

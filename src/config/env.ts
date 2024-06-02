@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// Define schema for environment variables
 const environmentSchema = z.object({
   DATABASE_URL: z.string(),
   NEXT_PUBLIC_FIREBASE_API_KEY: z.string(),
@@ -11,6 +12,7 @@ const environmentSchema = z.object({
   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: z.string(),
 });
 
+// Destructure environment variables
 const {
   DATABASE_URL,
   NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -22,6 +24,7 @@ const {
   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 } = process.env;
 
+// Parse environment variables against the schema
 const parsedResults = environmentSchema.safeParse({
   DATABASE_URL,
   NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -33,12 +36,15 @@ const parsedResults = environmentSchema.safeParse({
   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 });
 
+// Throw error if environment variables don't match schema
 if (!parsedResults.success) {
   throw new Error("Environment doesn't match the schema");
 }
 
+// Infer the type from the schema
 type EnvVarSchemaType = z.infer<typeof environmentSchema>;
 
+// Augment the ProcessEnv interface with the inferred type
 declare global {
   namespace NodeJS {
     interface ProcessEnv extends EnvVarSchemaType {}

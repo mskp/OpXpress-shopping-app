@@ -4,7 +4,16 @@ import { MAX_CART_ITEM_QUANTITY } from "@/config/consts";
 import { prisma } from "@/config/prisma.config";
 import { revalidatePath } from "next/cache";
 
-export async function addToCart(userId: string, productId: string) {
+/**
+ * Adds a product to the user's cart. If the product already exists, it increments the quantity.
+ * @param {string} userId - The ID of the user.
+ * @param {string} productId - The ID of the product.
+ * @returns {Promise<boolean>} - Returns true if the operation is successful, otherwise false.
+ */
+export async function addToCart(
+  userId: string,
+  productId: string
+): Promise<boolean> {
   try {
     const existingCartItem = await prisma.cart.findUnique({
       where: {
@@ -45,7 +54,16 @@ export async function addToCart(userId: string, productId: string) {
   }
 }
 
-export async function increaseQuantity(userId: string, productId: string) {
+/**
+ * Increases the quantity of a product in the user's cart by 1.
+ * @param {string} userId - The ID of the user.
+ * @param {string} productId - The ID of the product.
+ * @returns {Promise<boolean>} - Returns true if the operation is successful, otherwise false.
+ */
+export async function increaseQuantity(
+  userId: string,
+  productId: string
+): Promise<boolean> {
   try {
     const existingCartItem = await prisma.cart.findUnique({
       where: {
@@ -80,7 +98,17 @@ export async function increaseQuantity(userId: string, productId: string) {
   }
 }
 
-export async function decreaseQuantity(userId: string, productId: string) {
+/**
+ * Decreases the quantity of a product in the user's cart by 1.
+ * If the quantity becomes 0, the product is removed from the cart.
+ * @param {string} userId - The ID of the user.
+ * @param {string} productId - The ID of the product.
+ * @returns {Promise<boolean>} - Returns true if the operation is successful, otherwise false.
+ */
+export async function decreaseQuantity(
+  userId: string,
+  productId: string
+): Promise<boolean> {
   try {
     const existingCartItem = await prisma.cart.findUnique({
       where: {
@@ -119,7 +147,16 @@ export async function decreaseQuantity(userId: string, productId: string) {
   }
 }
 
-export async function deleteFromCart(userId: string, productId: string) {
+/**
+ * Removes a product from the user's cart.
+ * @param {string} userId - The ID of the user.
+ * @param {string} productId - The ID of the product.
+ * @returns {Promise<boolean>} - Returns true if the operation is successful, otherwise false.
+ */
+export async function deleteFromCart(
+  userId: string,
+  productId: string
+): Promise<boolean> {
   try {
     await prisma.cart.delete({
       where: {
@@ -136,6 +173,17 @@ export async function deleteFromCart(userId: string, productId: string) {
   }
 }
 
+/**
+ * Processes the checkout for the user by creating orders for each item in the cart.
+ * @param {string} userId - The ID of the user.
+ * @param {Object} checkoutDetails - The details required for checkout.
+ * @param {string} checkoutDetails.fullname - The full name of the user.
+ * @param {string} checkoutDetails.phone - The phone number of the user.
+ * @param {string} checkoutDetails.address - The address of the user.
+ * @param {string} checkoutDetails.pincode - The pincode of the user's location.
+ * @param {string} checkoutDetails.city - The city of the user's location.
+ * @returns {Promise<boolean>} - Returns true if the operation is successful, otherwise false.
+ */
 export async function checkout(
   userId: string,
   checkoutDetails: {
@@ -145,7 +193,7 @@ export async function checkout(
     pincode: string;
     city: string;
   }
-) {
+): Promise<boolean> {
   try {
     // Retrieve cart items for the user
     const cartItems = await prisma.cart.findMany({
@@ -198,7 +246,12 @@ export async function checkout(
   }
 }
 
-export async function clearCart(userId: string) {
+/**
+ * Clears all items from the user's cart.
+ * @param {string} userId - The ID of the user.
+ * @returns {Promise<boolean>} - Returns true if the operation is successful, otherwise false.
+ */
+export async function clearCart(userId: string): Promise<boolean> {
   try {
     await prisma.cart.deleteMany({
       where: {
@@ -208,6 +261,7 @@ export async function clearCart(userId: string) {
 
     // Revalidate the cart page
     revalidatePath(`/cart/${userId}`);
+    return true;
   } catch (error) {
     return false;
   }
