@@ -1,6 +1,12 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-function LoadingProductDetails() {
+/**
+ * Renders a skeleton loading animation while product details are being fetched.
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
+function LoadingProductDetails(): JSX.Element {
   return (
     <div className="min-h-screen p-4">
       <div className="mx-auto">

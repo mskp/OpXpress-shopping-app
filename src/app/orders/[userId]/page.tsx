@@ -1,14 +1,22 @@
 import ErrorComponent from "@/components/misc/error-component";
-import OrdersPageSkeleton from "@/components/skeleton/orders-page-skeleton";
 import { prisma } from "@/config/prisma.config";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
+/**
+ * Represents the page where users can view their orders.
+ *
+ * @component
+ * @param {object} props - The props object.
+ * @param {object} props.params - The parameters object.
+ * @param {string} props.params.userId - The ID of the user.
+ * @returns {JSX.Element} The JSX representation of the OrdersPage component.
+ */
 async function OrdersPage({
   params: { userId },
 }: {
   params: { userId: string };
-}) {
+}): Promise<JSX.Element> {
   if (!userId) return redirect("/");
 
   const orders = await prisma.order.findMany({

@@ -16,10 +16,17 @@ import {
   UserIcon,
   UserRoundPlus,
 } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function Menu() {
+/**
+ * The Menu component displays a dropdown menu for user authentication and navigation.
+ * Depending on the authentication status, it shows different menu items.
+ * If the user is logged in, it displays options to view orders and log out.
+ * If the user is not logged in, it displays options to log in and sign up.
+ *
+ * @returns {JSX.Element} The rendered Menu component.
+ */
+export default function Menu(): JSX.Element {
   const {
     auth: { isLoggedin, auth },
     logout,
@@ -36,32 +43,23 @@ export default function Menu() {
       </DropdownMenuTrigger>
       {isLoggedin ? (
         <DropdownMenuContent className="w-60">
-          {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator /> */}
           <DropdownMenuGroup>
             <DropdownMenuItem
               className="cursor-pointer"
               onClick={() => router.push(`/orders/${auth?.uid}`)}
             >
-              {/* <Link href={"/orders"} className="flex items-center"> */}
               <BaggageClaim className="mr-2 h-4 w-4" />
               <span>My Orders</span>
-              {/* </Link> */}
-
-              {/* <DropdownMenuShortcut>⇧⌘O</DropdownMenuShortcut> */}
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="cursor-pointer" onClick={logout}>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log out</span>
-            {/* <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> */}
           </DropdownMenuItem>
         </DropdownMenuContent>
       ) : (
         <DropdownMenuContent className="w-60">
-          {/* <DropdownMenuLabel>Menu</DropdownMenuLabel> */}
-          {/* <DropdownMenuSeparator /> */}
           <DropdownMenuGroup>
             <DropdownMenuItem
               className="cursor-pointer"
@@ -69,7 +67,6 @@ export default function Menu() {
             >
               <LogIn className="mr-2 h-4 w-4" />
               <span>Login</span>
-              {/* <DropdownMenuShortcut>⇧⌘O</DropdownMenuShortcut> */}
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
@@ -79,7 +76,6 @@ export default function Menu() {
           >
             <UserRoundPlus className="mr-2 h-4 w-4" />
             <span>Signup</span>
-            {/* <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> */}
           </DropdownMenuItem>
         </DropdownMenuContent>
       )}

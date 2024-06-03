@@ -1,6 +1,14 @@
 import { Skeleton } from "../ui/skeleton";
 
-export default function OrdersPageSkeleton() {
+/**
+ * A skeleton loader component for the Orders Page.
+ *
+ * This component displays a skeleton loading state for the orders page, which includes placeholders
+ * for three orders. Each order has placeholders for an image, title, and multiple lines of details.
+ *
+ * @returns {JSX.Element} The skeleton loader for the orders page.
+ */
+export default function OrdersPageSkeleton(): JSX.Element {
   return (
     <section className="py-10 relative">
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-6 mx-auto">

@@ -1,6 +1,12 @@
 import { Skeleton } from "../ui/skeleton";
 
-function ProductCardSkeleton() {
+/**
+ * The ProductCardSkeleton component displays a skeleton loading state for a product card.
+ * It includes placeholders for an image, title, price, and additional details.
+ *
+ * @returns {JSX.Element} The rendered ProductCardSkeleton component.
+ */
+function ProductCardSkeleton(): JSX.Element {
   return (
     <div className="group relative shadow-sm p-4 rounded-lg">
       <Skeleton className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none h-80" />

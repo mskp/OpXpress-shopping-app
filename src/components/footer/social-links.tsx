@@ -13,7 +13,12 @@ const socialLinks = [
   { href: "#", icon: <FaLinkedin /> },
 ];
 
-export default function SocialLinks() {
+/**
+ * The SocialLinks component renders social media links with icons.
+ *
+ * @returns {JSX.Element} The rendered SocialLinks component.
+ */
+export default function SocialLinks(): JSX.Element {
   return (
     <div className="flex gap-4 text-blue-gray-900 sm:justify-center">
       {socialLinks.map((link, idx) => (

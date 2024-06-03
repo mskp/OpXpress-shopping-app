@@ -1,35 +1,27 @@
 "use client";
 
+import { checkout } from "@/actions/cart";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useAuth } from "@/lib/redux/features/auth/use-auth";
 import { useCheckoutDialog } from "@/lib/redux/features/checkout-dialog/use-checkout-dialog";
+import { checkoutSchema } from "@/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Card, CardContent } from "../ui/card";
-import { checkout } from "@/actions/cart";
-import { useAuth } from "@/lib/redux/features/auth/use-auth";
-import { useRouter } from "next/navigation";
 
-const checkoutSchema = z.object({
-  fullname: z.string().min(1, "Full name is required"),
-  phone: z
-    .string()
-    .min(10, "Phone number must be at least 10 digits")
-    .regex(/^\d+$/, "Phone number must contain only digits"),
-  address: z.string().min(1, "Address is required"),
-  pincode: z
-    .string()
-    .min(5, "Pincode must be at least 5 digits")
-    .regex(/^\d+$/, "Pincode must contain only digits"),
-  city: z.string().min(1, "City is required"),
-});
-
+// Define the type of the checkout form data
 type CheckoutSchema = z.infer<typeof checkoutSchema>;
 
-export default function CheckoutDialog() {
+/**
+ * CheckoutDialog component for handling the checkout process.
+ * @returns {JSX.Element | null} The JSX element representing the checkout dialog.
+ */
+export default function CheckoutDialog(): JSX.Element | null {
   const router = useRouter();
   const { auth } = useAuth();
   const { setCheckoutDialog, checkoutDialog } = useCheckoutDialog();
@@ -41,6 +33,10 @@ export default function CheckoutDialog() {
     resolver: zodResolver(checkoutSchema),
   });
 
+  /**
+   * Handler for form submission
+   * @param {CheckoutSchema} checkoutDetails - The checkout form data.
+   */
   const handleAddToCart: () => void = handleSubmit(async (checkoutDetails) => {
     const ordered = await checkout(auth?.auth?.uid!, checkoutDetails);
     if (ordered) {
@@ -49,6 +45,7 @@ export default function CheckoutDialog() {
     }
   });
 
+  // If the dialog is not open, return null
   if (!checkoutDialog.isOpen) return null;
 
   return (

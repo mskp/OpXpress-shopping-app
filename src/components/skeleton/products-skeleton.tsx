@@ -1,6 +1,15 @@
 import { Skeleton } from "../ui/skeleton";
 
-function ProductsSkeleton() {
+/**
+ * A skeleton loader component for the Products Page.
+ *
+ * This component displays a skeleton loading state for the products page, which includes placeholders
+ * for eight product cards. Each product card has placeholders for an image, title, price, and additional
+ * details.
+ *
+ * @returns {JSX.Element} The skeleton loader for the products page.
+ */
+function ProductsSkeleton(): JSX.Element {
   return (
     <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4">

@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuthDialog } from "@/lib/redux/features/auth-dialog/use-auth-dialog";
 import { useAuth } from "@/lib/redux/features/auth/use-auth";
+import { signupSchema } from "@/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,25 +18,13 @@ import BrandIcon from "../misc/brand-icon";
 import { Card, CardContent } from "../ui/card";
 import GoogleLoginButton from "./google-login-button";
 
-const signupSchema = z
-  .object({
-    email: z
-      .string()
-      .min(1, "Email is required")
-      .email("Invalid email address"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
-    confirmPassword: z
-      .string()
-      .min(8, "Password must be at least 8 characters"),
-  })
-  .refine((ctx) => ctx.password === ctx.confirmPassword, {
-    message: "Passwords must match",
-    path: ["confirmPassword"],
-  });
-
 type SignupSchema = z.infer<typeof signupSchema>;
 
-export default function SignupDialog() {
+/**
+ * SignupDialog component for rendering a dialog for user signup.
+ * @returns {JSX.Element} The JSX element representing the signup dialog.
+ */
+export default function SignupDialog(): JSX.Element {
   const { setAuthDialog } = useAuthDialog();
   const { signup } = useAuth();
   const {
@@ -46,6 +35,10 @@ export default function SignupDialog() {
     resolver: zodResolver(signupSchema),
   });
 
+  /**
+   * Handles form submission for user signup.
+   * @param {Omit<SignupSchema, "confirmPassword">} data - The form data containing user email and password.
+   */
   const onSubmit = async ({
     email,
     password,

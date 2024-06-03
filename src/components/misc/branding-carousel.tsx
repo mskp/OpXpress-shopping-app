@@ -17,7 +17,13 @@ import React from "react";
 
 const images = [image1, image2, image3, image4, image5];
 
-function BrandingCarousel() {
+/**
+ * The BrandingCarousel component displays a carousel of branding images.
+ * The carousel auto-plays and loops through the images with a delay of 2 seconds.
+ *
+ * @returns {JSX.Element} The rendered BrandingCarousel component.
+ */
+function BrandingCarousel(): JSX.Element {
   const plugin = React.useRef(Autoplay({ delay: 2000 }));
   return (
     <Carousel

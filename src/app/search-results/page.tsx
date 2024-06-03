@@ -4,13 +4,21 @@ import { prisma } from "@/config/prisma.config";
 import { Product } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
 
+/**
+ * Displays search results based on the provided query.
+ *
+ * @component
+ * @param {object} props - The props object.
+ * @param {object} props.searchParams - The search parameters object.
+ * @param {string} props.searchParams.q - The search query.
+ * @returns {JSX.Element} The JSX representation of the SearchResults component.
+ */
 export default async function SearchResults({
   searchParams: { q },
 }: {
   searchParams: { q: string };
-}) {
+}): Promise<JSX.Element> {
   let products: Product[];
 
   try {
