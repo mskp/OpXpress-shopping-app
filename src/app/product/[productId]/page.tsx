@@ -2,11 +2,20 @@ import { AddToCartButton } from "@/components/cart/buttons";
 import { prisma } from "@/config/prisma.config";
 import Image from "next/image";
 
+/**
+ * Displays detailed information about a specific product.
+ *
+ * @component
+ * @param {object} props - The props object.
+ * @param {object} props.params - The parameters object.
+ * @param {string} props.params.productId - The ID of the product to display.
+ * @returns {JSX.Element} The JSX representation of the ProductPage component.
+ */
 async function ProductPage({
   params: { productId },
 }: {
   params: { productId: string };
-}) {
+}): Promise<JSX.Element> {
   const product = await prisma.product.findUnique({
     where: {
       id: productId,

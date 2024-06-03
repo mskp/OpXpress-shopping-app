@@ -1,6 +1,15 @@
 import { Skeleton } from "../ui/skeleton";
 
-function CartPageSkeleton() {
+/**
+ * A skeleton loader component for the Cart Page.
+ *
+ * This component displays a skeleton loading state for the cart page, which includes placeholders
+ * for three cart items and a summary section. Each cart item has placeholders for an image, title,
+ * details, and action buttons. The summary section has placeholders for a total price and action buttons.
+ *
+ * @returns {JSX.Element} The skeleton loader for the cart page.
+ */
+function CartPageSkeleton(): JSX.Element {
   return (
     <section className="py-10 relative">
       <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">

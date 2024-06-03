@@ -9,13 +9,21 @@ import ErrorComponent from "@/components/misc/error-component";
 import { prisma } from "@/config/prisma.config";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import LoadingCart from "./loading";
 
+/**
+ * Represents the page where users can view and manage their cart items.
+ *
+ * @component
+ * @param {object} props - The props object.
+ * @param {object} props.params - The parameters object.
+ * @param {string} props.params.userId - The ID of the user.
+ * @returns {JSX.Element} The JSX representation of the CartPage component.
+ */
 async function CartPage({
   params: { userId },
 }: {
   params: { userId: string };
-}) {
+}): Promise<JSX.Element> {
   const cartItems = await prisma.cart.findMany({
     where: {
       userId,

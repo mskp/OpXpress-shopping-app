@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem
+  CarouselItem,
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +16,13 @@ const categories = [
   { name: "accessories", image: accessories },
 ];
 
-export default function CategoryCarousel() {
+/**
+ * The CategoryCarousel component displays a carousel of product categories.
+ * Each category is displayed as a card with an image and a link to the respective category page.
+ *
+ * @returns {JSX.Element} The rendered CategoryCarousel component.
+ */
+export default function CategoryCarousel(): JSX.Element {
   return (
     <div className="flex justify-center">
       <Carousel

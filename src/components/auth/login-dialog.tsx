@@ -1,17 +1,3 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import BrandIcon from "../misc/brand-icon";
-import { Card, CardContent } from "../ui/card";
-import GoogleLoginButton from "./google-login-button";
-
-const loginSchema = z.object({
-  email: z.string().min(1, "Email is required").email("Invalid email address"),
-  password: z.string().min(1, "Password is required"),
-});
-
-type LoginSchema = z.infer<typeof loginSchema>;
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -24,8 +10,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuthDialog } from "@/lib/redux/features/auth-dialog/use-auth-dialog";
 import { useAuth } from "@/lib/redux/features/auth/use-auth";
+import { loginSchema } from "@/validations";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import BrandIcon from "../misc/brand-icon";
+import { Card, CardContent } from "../ui/card";
+import GoogleLoginButton from "./google-login-button";
 
-export default function LoginDialog() {
+type LoginSchema = z.infer<typeof loginSchema>;
+
+/**
+ * LoginDialog component for rendering a dialog for user login.
+ * @returns {JSX.Element} The JSX element representing the login dialog.
+ */
+export default function LoginDialog(): JSX.Element {
   const {
     setAuthDialog,
     authDialog: { type, isOpen },
@@ -40,9 +39,14 @@ export default function LoginDialog() {
     resolver: zodResolver(loginSchema),
   });
 
+  /**
+   * Handles form submission for user login.
+   * @param {LoginSchema} data - The form data containing user email and password.
+   */
   const onSubmit = async ({ email, password }: LoginSchema) => {
     await login({ email, password, loginMethod: "emailAndPassword" });
   };
+
   return (
     <Dialog open={open} onOpenChange={setAuthDialog}>
       <DialogContent className="sm:max-w-[425px]">

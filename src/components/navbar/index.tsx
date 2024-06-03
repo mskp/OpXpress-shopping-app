@@ -1,4 +1,5 @@
 "use client";
+
 import { useAuthDialog } from "@/lib/redux/features/auth-dialog/use-auth-dialog";
 import { useAuth } from "@/lib/redux/features/auth/use-auth";
 import { ShoppingCart } from "lucide-react";
@@ -10,7 +11,15 @@ import { Input } from "../ui/input";
 import { toast } from "../ui/use-toast";
 import Menu from "./menu";
 
-function Navbar() {
+/**
+ * The Navbar component displays the main navigation bar of the application.
+ * It includes the brand icon, search input, menu, and shopping cart button.
+ * The search input is responsive and handles search term changes to update the query string in the URL.
+ * The shopping cart button checks the authentication status before redirecting to the cart page or showing a login prompt.
+ *
+ * @returns {JSX.Element} The rendered Navbar component.
+ */
+function Navbar(): JSX.Element {
   const { auth } = useAuth();
   const { setAuthDialog } = useAuthDialog();
   const router = useRouter();
@@ -22,6 +31,12 @@ function Navbar() {
     if (!searchTerm.trim()) router.replace("/");
   }, [searchTerm, router]);
 
+  /**
+   * Handles changes to the search input value.
+   * Updates the search term state and navigates to the search results page with the new query.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The change event from the search input.
+   */
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);

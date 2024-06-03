@@ -1,12 +1,24 @@
+import { Category } from "@/app/product/category/[categoryName]/page";
 import { prisma } from "@/config/prisma.config";
 import { Product } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "../cart/buttons";
 import ErrorComponent from "./error-component";
-import { Category } from "@/app/product/category/[categoryName]/page";
 
-async function Products({ category = "all" }: { category?: Category }) {
+/**
+ * The Products component fetches and displays a list of products.
+ * It optionally filters products by category.
+ *
+ * @param {Object} props - The props object.
+ * @param {string} [props.category="all"] - The category to filter products by. Defaults to "all".
+ * @returns {Promise<JSX.Element>} The rendered Products component.
+ */
+async function Products({
+  category = "all",
+}: {
+  category?: Category;
+}): Promise<JSX.Element> {
   let products: Product[];
 
   try {

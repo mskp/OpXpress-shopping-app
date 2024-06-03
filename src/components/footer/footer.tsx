@@ -3,7 +3,13 @@ import BrandIcon from "../misc/brand-icon";
 import FooterLinks from "./footer-links";
 import SocialLinks from "./social-links";
 
-function Footer() {
+/**
+ * The Footer component renders the footer section of the website.
+ * It includes the brand icon, footer links, and social links.
+ *
+ * @returns {JSX.Element} The rendered Footer component.
+ */
+function Footer(): JSX.Element {
   const currentYear = new Date().getFullYear();
   return (
     <footer className="relative w-full bg-opacity-50 mt-5 shadow-2xl pt-10">

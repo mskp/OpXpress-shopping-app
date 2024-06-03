@@ -4,6 +4,11 @@ import Link from "next/link";
 
 const andika = Andika({ subsets: ["latin"], weight: "400" });
 
+/**
+ * The BrandIcon component displays the application's brand name as a link.
+ * The link redirects to the home page and can be disabled based on the `isDisabled` prop.
+ * When disabled, the link is not clickable.
+ */
 function BrandIcon({ isDisabled = false }: { isDisabled?: boolean }) {
   return (
     <Link
